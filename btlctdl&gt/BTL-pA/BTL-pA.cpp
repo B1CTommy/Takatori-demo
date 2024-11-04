@@ -20,14 +20,10 @@ public:
     ~SV() {}
 
     friend istream& operator>>(istream &inp, SV &sv) {
-        cout << "Nhap ma sinh vien: ";
         inp >> sv.msv;
-        cout << "Nhap ten sinh vien: ";
         inp.ignore();
         getline(inp, sv.ten);
-        cout << "Nhap tuoi: ";
         inp >> sv.tuoi;
-        cout << "Nhap diem: ";
         inp >> sv.diem;
         return inp;
     }
@@ -223,21 +219,24 @@ TM() {
     VectorSV vectorSV;
     ListSV listSV;
 
+    ifstream file("input.txt");
     int n;
-    cout << "Nhap so luong sinh vien: ";
-    cin >> n;
-
-    FOR(i, 0, n) {
-        SV sv;
-        cout << "Nhap thong tin sinh vien thu " << i + 1 << ":\n";
-        cin >> sv;
-        
-        // Kiểm tra mã sinh viên có số cuối chẵn hay lẻ để đưa vào vector hoặc list
-        if (isEvenLastDigit(sv.getMsv())) {
-            vectorSV.addStudent(sv);
-        } else {
-            listSV.addStudent(sv);
+    if (file.is_open()) {
+        file >> n;
+        file.ignore();
+        FOR(i, 0, n) {
+            SV sv;
+            file >> sv;
+            if (isEvenLastDigit(sv.getMsv())) {
+                vectorSV.addStudent(sv);
+            } else {
+                listSV.addStudent(sv);
+            }
         }
+        file.close();
+    } else {
+        cout << "Khong mo duoc file input.txt\n";
+        return 1;
     }
 
     int choice;
