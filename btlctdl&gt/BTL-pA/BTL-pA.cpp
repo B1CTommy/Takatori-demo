@@ -314,12 +314,12 @@ TM() {
             }
             case 11: {
                 SV maxSV = vectorSV.findMax();
-                cout << "Sinh vien co diem thap nhat trong vector:\n" << maxSV;
+                cout << "Sinh vien co diem cao nhat trong vector:\n" << maxSV;
                 break;
             }
             case 12: {
                 SV maxSV = listSV.findMax();
-                cout << "Sinh vien co diem thap nhat trong list:\n" << maxSV;
+                cout << "Sinh vien co diem cao nhat trong list:\n" << maxSV;
                 break;
             }
             case 0:
